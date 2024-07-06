@@ -5,6 +5,9 @@ export type simplifieProduct = {
     slug: string;
     categoryName: string;
     name: string;
+    quantity: number;
+    variants: string[];
+    
   }
   
   export type fullProduct = {
@@ -25,6 +28,7 @@ export type simplifieProduct = {
 
   export type category = {
     name: string;
+    slug: string;
     products: fullProduct[];
     image: string;
   }

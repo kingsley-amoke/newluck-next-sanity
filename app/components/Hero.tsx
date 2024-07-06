@@ -59,18 +59,27 @@ export default function Hero({
         </div>
 
         <div className="flex flex-1 flex-col items-center justify-between gap-8 md:flex-row w-4/5">
-          <div className="flex flex-col md:flex-row h-12 w-full divide-x overflow-hidden rounded-lg border">
-            <div className="flex w-1/3 items-center justify-center gap-5">
+          <div className="flex flex-col md:flex-row lg:h-12 w-full lg:divide-x lg:overflow-hidden rounded-lg lg:border">
+            <div className="flex w-[80%] lg:w-1/3 items-center justify-start lg:justify-center gap-5">
               <ShieldCheck />
+              <div>
+
               100% Guarantee
+              </div>
             </div>
-            <div className="flex w-1/3 items-center justify-center gap-5">
+            <div className="flex w-[80%] lg:w-1/3 items-center justify-start lg:justify-center gap-5">
               <Ship />
+              <div>
+
               Free shipping
+              </div>
             </div>
-            <div className="flex w-1/3 items-center justify-center gap-5">
+            <div className="flex w-[80%] lg:w-1/3 items-center justify-start lg:justify-center gap-5">
               <DollarSign />
+              <div>
+
               Cash on Delivery
+              </div>
             </div>
           </div>
         </div>

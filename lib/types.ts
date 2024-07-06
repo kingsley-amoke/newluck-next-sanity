@@ -22,3 +22,9 @@ export type simplifieProduct = {
     name: string;
     "url": string;
   }
+
+  export type category = {
+    name: string;
+    products: fullProduct[];
+    image: string;
+  }

@@ -10,65 +10,67 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 
 import { getHeroImages } from "@/lib/query";
 import { useRef } from "react";
+import { lookup } from "dns";
+import { DollarSign, ShieldCheck, Ship } from "lucide-react";
 
-export default async function Hero() {
+export default function Hero({
+  image,
+}: {
+  image: { name: string; url: string }[];
+}) {
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
-  const plugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  )
-  const data = await getHeroImages();
-  console.log(data);
   return (
-    <section className=" mx-auto max-w-2xl px-4 sm:pb-6 lg:max-w-7xl lg:px-8">
-      <div className="mb-8 flex flex-wrap justify-between md:mb-16">
-        <div className="mb-12 flex w-full md:mb-16 lg:w-2/3">
-          <Carousel 
-      plugins={[plugin.current]}
-      className="w-full max-w-xs"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
-      >
-            <CarouselContent>
-              {data &&
-                data.map((image) => (
-                
-                    <CarouselItem key={image.name}>
+    <section className="flex-1">
+      <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
+        <div className="w-full h-full flex justify-center items-center flex-4">
+          <Carousel
+            plugins={[plugin.current]}
+            className="w-full max-w-xs"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+            opts={{
+              loop: true,
+            }}
+          >
+            <CarouselPrevious className="bg-gray-400 z-10 left-5 opacity-60 font-bold" />
+            <CarouselNext className="bg-gray-400 z-10 right-5 opacity-60 font-bold" />
 
-                       <Image src={image.url} alt={image.name} width={500} height={500}/>
-                    </CarouselItem>
-                   
+            <CarouselContent>
+              {image &&
+                image.map((image) => (
+                  <CarouselItem key={image.name}>
+                    <Image
+                      src={image.url}
+                      alt={image.url}
+                      width={1280}
+                      height={1280}
+                    />
+                  </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
           </Carousel>
         </div>
-      </div>
 
-      <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-        <div className="flex h-12 w-64 divide-x overflow-hidden rounded-lg border">
-          <Link
-            href="/phones"
-            className="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
-          >
-            Phones
-          </Link>
-          <Link
-            href="/laptops"
-            className="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
-          >
-            Laptops
-          </Link>
-          <Link
-            href="/accessories"
-            className="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
-          >
-            Accessories
-          </Link>
+        <div className="flex flex-1 flex-col items-center justify-between gap-8 md:flex-row w-4/5">
+          <div className="flex flex-col md:flex-row h-12 w-full divide-x overflow-hidden rounded-lg border">
+            <div className="flex w-1/3 items-center justify-center gap-5">
+              <ShieldCheck />
+              100% Guarantee
+            </div>
+            <div className="flex w-1/3 items-center justify-center gap-5">
+              <Ship />
+              Free shipping
+            </div>
+            <div className="flex w-1/3 items-center justify-center gap-5">
+              <DollarSign />
+              Cash on Delivery
+            </div>
+          </div>
         </div>
       </div>
     </section>

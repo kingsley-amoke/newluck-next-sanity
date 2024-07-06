@@ -24,8 +24,8 @@ export default function Navbar() {
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl my-5">
         <Link href={`/`}>
-          <h1 className="text-2xl md:text-4xl font-bold">
-            New<span className="text-primary">Luck</span>
+          <h1 className="text-3xl md:text-5xl font-extrabold font-mono text-blue-400">
+            New<span className="text-red-600 font-serif font-thin text-xl">Luck</span>
           </h1>
         </Link>
 

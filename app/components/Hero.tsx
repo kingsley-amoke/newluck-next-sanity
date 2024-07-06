@@ -25,12 +25,12 @@ export default function Hero({
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
-    <section className="flex-1">
+    <section>
       <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
-        <div className="w-full h-full flex justify-center items-center flex-4">
+        <div className="flex justify-center items-center flex-4">
           <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-xs"
+            className="w-full h-full lg:w-[1400px] lg:h-[720px]"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
             opts={{
@@ -47,8 +47,10 @@ export default function Hero({
                     <Image
                       src={image.url}
                       alt={image.url}
-                      width={1280}
-                      height={1280}
+                      width={1400}
+                      height={720}
+                      className="contain-size"
+                      
                     />
                   </CarouselItem>
                 ))}

@@ -1,10 +1,10 @@
 //get hero images
 
 import { client } from "./sanity";
-import { HeroImage, simplifieProduct } from "./types";
+import { HeroImage, category, simplifieProduct } from "./types";
 
 export async function getHeroImages(): Promise<HeroImage[]> {
-    const query = `*[_type == 'hero'][0...4] | order(_createdAt desc) {
+    const query = `*[_type == 'hero'][] | order(_createdAt desc) {
     name,
     "url": image.asset->url
     }`;

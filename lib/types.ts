@@ -12,13 +12,17 @@ export type simplifieProduct = {
   
   export type fullProduct = {
     _id: string;
-    images: any;
+    imageUrl: string;
     price: number;
     slug: string;
     categoryName: string;
     name: string;
     description: string;
     price_id: string;
+    quantity: number;
+    variants: string[];
+    reviews: review[];
+    ratings: rating[];
   }
 
   export type HeroImage = {
@@ -27,8 +31,20 @@ export type simplifieProduct = {
   }
 
   export type category = {
+    _id: string;
     name: string;
     slug: string;
     products: fullProduct[];
     image: string;
+  }
+
+  export type review = {
+name: string;
+review: string;
+user: string
+  }
+
+  export type rating = {
+    rating: string;
+    user: string
   }

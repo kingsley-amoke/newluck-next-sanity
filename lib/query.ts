@@ -1,7 +1,7 @@
 //get hero images
 
 import { client } from "./sanity";
-import { HeroImage, category, simplifieProduct } from "./types";
+import { HeroImage, category, fullProduct, simplifieProduct } from "./types";
 
 export async function getHeroImages(): Promise<HeroImage[]> {
     const query = `*[_type == 'hero'][] | order(_createdAt desc) {
@@ -16,24 +16,25 @@ export async function getHeroImages(): Promise<HeroImage[]> {
 
 //get all products
 
-export async function getAllProducts(): Promise<simplifieProduct[]> {
+export async function getAllProducts(): Promise<fullProduct[]> {
     const query = `*[_type == 'product'][] | order(_createdAt desc) {
       _id,
       price,
       name,
       quantity,
       variants,
+      description,
       "slug": slug.current,
       "categoryName": category->name,
       "imageUrl": images[0].asset->url,
-      "reviews": reviews->{
+      "reviews": reviews[]->{
       name,
       review,
-      user->
+      "user": user->name
       },
-      "ratings": ratings->{
+      "ratings": ratings[]->{
       rating,
-      user->
+      "user": user->name
       }
       
     }`;
@@ -73,60 +74,27 @@ export async function getAllProducts(): Promise<simplifieProduct[]> {
 
   export async function getCategories(): Promise<category[]> {
     const query = `*[_type == 'category'][] | order(_createdAt desc) {
-     
+     _id,
       name,
-      slug,
-      products,
+      "slug": slug.current,
       "image": image.asset->url,
+      "products": products[]->{
+      _id
+      }
     }`;
+
+    try {
+      
+      const data = await client.fetch(query);
+    
+      return data;
+    } catch (error) {
+      console.log(error);
+      return []
+    }
   
-    const data = await client.fetch(query);
-  
-    return data;
   }
 
   // const likeProduct = async() => {
   //   const data = await client.patch(id)
   // }
-
-  //get reviews by reference
-// export const getReviewsByReference = async(ref:string)=>{
-//   const query = `*[name == 'reviews'][] {
-//   reviews,`
-
-//   const data = await client.fetch(query, { ref });
-
-//   console.log(data)
-// }
-
-// export const productDetailQuery = (id:string) => {
-//   const query = `*[_type == "product" && _id == '${id}']{
-//     image{
-//       asset->{
-//         url
-//       }
-//     },
-//     _id,
-//     title, 
-//     about,
-//     category,
-//     destination,
-//     postedBy->{
-//       _id,
-//       userName,
-//       image
-//     },
-//    ratings[]{
-//       user,
-//       rating
-//     },
-//     reviews[]{
-//       review,
-//       _key,
-      
-//     }
-//   }`;
-
-//   const data = client.fetch(query);
-//   console.log(data)
-// };

@@ -24,9 +24,9 @@ const Product = ({ product }: { product: fullProduct }) => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-1/2">
-        <div className="mx-50 my-10 flex gap-10">
-          <div className="w-1/2 flex flex-col justify-center items-center">
+      <div className="w-full md:w-1/2">
+        <div className="mx-5 lg:mx-50 my-10 flex flex-col lg:flex-row gap-10">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
             <Image
               src={product.imageUrl}
               className="contain-size"
@@ -36,7 +36,7 @@ const Product = ({ product }: { product: fullProduct }) => {
             />
             <div>other images and quantity</div>
           </div>
-          <div className="w-1/2 flex flex-col">
+          <div className="w-full md:w-1/2 flex flex-col">
             <div>
               <div className="flex justify-between items-center">
                 <h2 className="font-bold text-2xl">{product.name}</h2>
@@ -84,7 +84,7 @@ const Product = ({ product }: { product: fullProduct }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-5">
           <h4 className="font-semibold">Product Specifications</h4>
           <div>
             Colors:{" "}
@@ -93,9 +93,9 @@ const Product = ({ product }: { product: fullProduct }) => {
             ))}
           </div>
         </div>
-        <div>specs</div>
-        <div>images</div>
-        <div id="reviews">
+        <div className="mx-5">specs</div>
+        <div className="mx-5">images</div>
+        <div id="reviews" className="mx-5">
           <h4 className="font-semibold my-5">Ratings and Reviews</h4>
           <div className="flex justify-between">
             {

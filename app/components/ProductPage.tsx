@@ -11,7 +11,7 @@ const Product = ({ product }: { product: fullProduct }) => {
   const [like, setLike] = useState(false);
   const [qty, setQty] = useState(1);
 
-  const productRating = product?.ratings.map((rating) =>
+  const productRating = product?.ratings?.map((rating) =>
     parseFloat(rating.rating)
   )!;
 
@@ -20,6 +20,7 @@ const Product = ({ product }: { product: fullProduct }) => {
     (value, index) => index
   );
 
+  const allRatings = product.ratings?.length || 0
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -49,10 +50,10 @@ const Product = ({ product }: { product: fullProduct }) => {
               </div>
               <div className="my-5 flex gap-5 items-center">
                 <div className="flex items-center gap-2">
-                  {averageRating.map((rating, index) => (
+                  { product.ratings && averageRating.map((rating, index) => (
                     <Star color="green" key={index} />
                   ))}
-                  ({product.ratings.length})
+                  ({allRatings})
                 </div>
                 <Link href="#reviews">Write a review </Link>
               </div>
@@ -97,7 +98,10 @@ const Product = ({ product }: { product: fullProduct }) => {
         <div id="reviews">
           <h4 className="font-semibold my-5">Ratings and Reviews</h4>
           <div className="flex justify-between">
-            <div>
+            {
+              product.ratings ? (
+
+                <div>
               <h5>Overall Rating</h5>
               <div className="flex gap-3 my-5">
                 <p className="font-semibold text-3xl">{calculateRatings(productRating)}</p>
@@ -109,10 +113,12 @@ const Product = ({ product }: { product: fullProduct }) => {
                     ))}
                   
                     </div>
-                    ({product.ratings.length} {product.ratings.length > 1 ? "reviews": "review"})
+                    ({product.ratings?.length} {product.ratings?.length > 1 ? "reviews": "review"})
                 </div>
               </div>
             </div>
+              ) : null
+            }
             <div>
               <h5>Rate this product</h5>
               <div className="flex gap-3 my-5">
@@ -137,7 +143,7 @@ const Product = ({ product }: { product: fullProduct }) => {
           </div>
 
           <div>
-            {product.reviews.map((review, index) => {
+            {product.reviews?.map((review, index) => {
               const userRating = product.ratings.filter(
                 (rating) => rating.user === review.user
               );

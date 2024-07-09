@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 //calculate procuct ratings
 
 export const calculateRatings = (ratingsArray: Array<number>) => {
-  if (ratingsArray.length === 0) {
+  if (!ratingsArray || ratingsArray.length === 0) {
     return 0;
   }
 

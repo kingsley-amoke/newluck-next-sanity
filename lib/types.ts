@@ -6,7 +6,7 @@ export type simplifieProduct = {
     categoryName: string;
     name: string;
     quantity: number;
-    variants: string[];
+    variants?: string[];
     
   }
   
@@ -34,7 +34,7 @@ export type simplifieProduct = {
     _id: string;
     name: string;
     slug: string;
-    products: fullProduct[];
+    products: simplifieProduct[];
     image: string;
   }
 

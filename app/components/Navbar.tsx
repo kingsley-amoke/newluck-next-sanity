@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { ToggleTheme } from "./ToggleTheme";
 
 const links = [
-  { name: "Home", href: "/" },
   { name: "Phones", href: "/phones" },
   { name: "Laptops", href: "/laptops" },
   { name: "Accessories", href: "/accessories" },
@@ -33,7 +32,7 @@ export default function Navbar() {
           {links.map(({ name, href }, idx) => (
             <div key={idx}>
               <Link
-                href={href}
+                href={`/categories${href}`}
                 className={cn(
                   "text-lg font-semibold hover:text-primary text-gray-600 transition",
                   pathname === href && "text-primary"

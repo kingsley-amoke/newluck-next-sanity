@@ -5,8 +5,6 @@ import CategoryCard from "./CategoryCard";
 const Categories = async () => {
   const categories = await getCategories();
 
-  console.log(categories[0]);
-
   return (
     <div className="my-10 flex justify-center items-center">
      {

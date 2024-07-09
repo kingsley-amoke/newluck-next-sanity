@@ -7,6 +7,7 @@ import { useShoppingCart } from "use-shopping-cart";
 
 import { cn } from "@/lib/utils";
 import { ToggleTheme } from "./ToggleTheme";
+import DrawerWrapper from "./Drawer";
 
 const links = [
   { name: "Phones", href: "/phones" },
@@ -24,7 +25,10 @@ export default function Navbar() {
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl my-5">
         <Link href={`/`}>
           <h1 className="text-3xl md:text-5xl font-extrabold font-mono text-blue-400">
-            New<span className="text-red-600 font-serif font-thin text-xl">Luck</span>
+            New
+            <span className="text-red-600 font-serif font-thin text-xl">
+              Luck
+            </span>
           </h1>
         </Link>
 
@@ -45,14 +49,16 @@ export default function Navbar() {
         </nav>
 
         <div className="flex justify-center items-center gap-2">
-          <Search className="cursor-pointer mr-2"/>
-          <User2Icon className="cursor-pointer"/>
-         
-            <ToggleTheme />
-         
-          
-            <ShoppingBag onClick={() => handleCartClick()} className="cursor-pointer"/>
-          
+          <Search className="cursor-pointer mr-2" />
+
+          <DrawerWrapper />
+
+          <ToggleTheme />
+
+          <ShoppingBag
+            onClick={() => handleCartClick()}
+            className="cursor-pointer"
+          />
         </div>
       </div>
     </header>
